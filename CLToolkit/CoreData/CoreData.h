@@ -10,7 +10,7 @@
 #define CLToolkit_CoreData_h
 
 #import <CoreData/CoreData.h>
-#import <MagicalRecord/CoreData+MagicalRecord.h>
+#import <MagicalRecord/MagicalRecord.h>
 #import "Core.h"
 
 #import "MagicalRecord+Reactive.h"

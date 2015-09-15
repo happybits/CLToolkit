@@ -165,17 +165,17 @@ void Log(NSString *format, ...);
 
 /************************ Logging *************************/
 
-#define LogError(frmt, ...)    LOG_OBJC_TAG_MAYBE(LOG_ASYNC_ERROR,   kLogLevel, LOG_FLAG_ERROR,   kLogContext, kLogTag, frmt, ##__VA_ARGS__)
-#define LogWarn(frmt, ...)     LOG_OBJC_TAG_MAYBE(LOG_ASYNC_WARN,    kLogLevel, LOG_FLAG_WARN,    kLogContext, kLogTag, frmt, ##__VA_ARGS__)
-#define LogInfo(frmt, ...)     LOG_OBJC_TAG_MAYBE(LOG_ASYNC_INFO,    kLogLevel, LOG_FLAG_INFO,    kLogContext, kLogTag, frmt, ##__VA_ARGS__)
-#define LogDebug(frmt, ...)    LOG_OBJC_TAG_MAYBE(LOG_ASYNC_DEBUG,   kLogLevel, LOG_FLAG_DEBUG,   kLogContext, kLogTag, frmt, ##__VA_ARGS__)
-#define LogTrace(frmt, ...)    LOG_OBJC_TAG_MAYBE(LOG_ASYNC_VERBOSE,   kLogLevel, LOG_FLAG_VERBOSE,   kLogContext, kLogTag, frmt, ##__VA_ARGS__)
+#define LOG_LEVEL_TRACE DDLogLevelVerbose
+#define LOG_LEVEL_DEBUG DDLogLevelDebug
+#define LOG_LEVEL_INFO DDLogLevelInfo
+#define LOG_LEVEL_WARN DDLogLevelWarn
+#define LOG_LEVEL_ERROR DDLogLevelError
 
-#define LogCError(frmt, ...)   LOG_C_TAG_MAYBE(LOG_ASYNC_ERROR,      kLogLevel, LOG_FLAG_ERROR,   kLogContext, kLogTag, frmt, ##__VA_ARGS__)
-#define LogCWarn(frmt, ...)    LOG_C_TAG_MAYBE(LOG_ASYNC_WARN,       kLogLevel, LOG_FLAG_WARN,    kLogContext, kLogTag, frmt, ##__VA_ARGS__)
-#define LogCInfo(frmt, ...)    LOG_C_TAG_MAYBE(LOG_ASYNC_INFO,       kLogLevel, LOG_FLAG_INFO,    kLogContext, kLogTag, frmt, ##__VA_ARGS__)
-#define LogCDebug(frmt, ...)   LOG_C_TAG_MAYBE(LOG_ASYNC_DEBUG,      kLogLevel, LOG_FLAG_DEBUG,   kLogContext, kLogTag, frmt, ##__VA_ARGS__)
-#define LogCTrace(frmt, ...)   LOG_C_TAG_MAYBE(LOG_ASYNC_VERBOSE,      kLogLevel, LOG_FLAG_VERBOSE,   kLogContext, kLogTag, frmt, ##__VA_ARGS__)
+#define LogError(frmt, ...)    LOG_MAYBE(NO,                 kLogLevel, DDLogFlagError,   kLogContext, kLogTag, __PRETTY_FUNCTION__, frmt, ##__VA_ARGS__)
+#define LogWarn(frmt, ...)     LOG_MAYBE(LOG_ASYNC_ENABLED,  kLogLevel, DDLogFlagWarning, kLogContext, kLogTag, __PRETTY_FUNCTION__, frmt, ##__VA_ARGS__)
+#define LogInfo(frmt, ...)     LOG_MAYBE(LOG_ASYNC_ENABLED,  kLogLevel, DDLogFlagInfo,    kLogContext, kLogTag, __PRETTY_FUNCTION__, frmt, ##__VA_ARGS__)
+#define LogDebug(frmt, ...)    LOG_MAYBE(LOG_ASYNC_ENABLED,  kLogLevel, DDLogFlagDebug,   kLogContext, kLogTag, __PRETTY_FUNCTION__, frmt, ##__VA_ARGS__)
+#define LogTrace(frmt, ...)    LOG_MAYBE(LOG_ASYNC_ENABLED,  kLogLevel, DDLogFlagVerbose, kLogContext, kLogTag, __PRETTY_FUNCTION__, frmt, ##__VA_ARGS__)
 
 // Default to DEBUG level when debugging, INFO otherwise
 #ifdef DEBUG
