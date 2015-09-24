@@ -35,7 +35,6 @@
 #import <ConciseKit/ConciseKit.h>
 #import <BlocksKit/BlocksKit.h>
 #import <ReactiveCocoa/ReactiveCocoa.h>
-#import <libextobjc/EXTScope.h>
 #import <CocoaLumberjack/Cocoalumberjack.h>
 
 #import "NSObject+Core.h"
