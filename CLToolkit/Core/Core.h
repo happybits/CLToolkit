@@ -130,7 +130,7 @@ void Log(NSString *format, ...);
 #define $jsonDumps(obj)                  (obj ? [[NSString alloc] initWithData:$jsonDumpsData(obj) encoding:NSUTF8StringEncoding] : nil)
 #define $jsonLoads(str)                  (str ? $jsonLoadsData([str dataUsingEncoding:NSUTF8StringEncoding]) : nil)
 #define $jsonLoadsURL(url)               (url ? $jsonLoadsData([NSData dataWithContentsOfURL:url]) : nil)
-#define $jsonLoadsResource(name)         (name ? $jsonLoadsURL($resourceURL(name)) : nil)
+#define $jsonLoadsResource(name)         (name != nil ? $jsonLoadsURL($resourceURL(name)) : nil)
 
 #define $plistDumpsData(obj)             (obj ? [NSPropertyListSerialization dataWithPropertyList:obj format:NSPropertyListXMLFormat_v1_0 options:PLIST_WRITING_OPTIONS error:NULL] : nil)
 #define $plistLoadsData(data)            (data ? [NSPropertyListSerialization propertyListWithData:data options:0 format:NULL error:NULL] : nil)
